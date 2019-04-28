@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    </head>
+    <body>
+
+        <div style="width:20%; margin:0 auto; padding-top: 10%">
+            <form>
+                Username:<br>
+                <input type="text" id="fname">
+                <br>
+                Password:<br>
+                <input type="password" id="fpass">
+                <br><br>
+                <input onclick="doLogin()" type="submit" value="Submit">
+                <br><br>
+                <span style=" cursor: pointer; font-family: 'Calibri Light'; text-decoration: underline" onclick="myFunction()">Password Recovery</span>
+            </form>
+        </div>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript">
+
+            function myFunction() {
+                var uname = document.getElementById('fname').value;
+
+                console.log(uname);
+
+                if(uname == '')
+                {
+                    alert('Please, fill the username field to recover password');
+                }
+                else {
+
+                    $.get("http://localhost:90/app/php/sessao.php", {operation:'rpassword', username: uname});
+                    alert('Email sent with the recovered password');
+                }
+                return false;
+            }
+
+            function doLogin() {
+                var uname = document.getElementById('fname').value;
+                var pass = document.getElementById('fpass').value;
+                if(uname === '' || pass === '')
+                {
+                    alert('Please, fill the username and password');
+                }
+                else
+                {
+                    $.get("http://localhost:90/app/php/sessao.php", {operation:'login',username: uname,password:pass})
+                        .done(function(data){
+                            if(data !== '')
+                                alert("Login Successfully!!");
+                            else
+                                alert("User or Password incorrect")
+                        });
+                }
+            }
+
+        </script>
+    </body>
+</html>

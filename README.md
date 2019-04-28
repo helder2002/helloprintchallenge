@@ -13,7 +13,7 @@ Microsoft IIS to support the WebServer
 
 
 # Languages
-The programming languages used were Javascript with JQuery and PHP.
+The programming languages used were Javascript with JQuery and PHP 7.3.4.
 All applications were used with the default configs.
 
 
